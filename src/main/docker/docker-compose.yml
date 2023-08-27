@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  my-java-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cloud_hotel_app
+    image: cloud_hotel_app:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
