@@ -1,0 +1,327 @@
+<header id="intro" style="display: block;" xmlns="http://www.w3.org/1999/html">
+  <style>
+    @keyframes bounceVertical {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-30px);
+      }
+      60% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .moving-text:nth-child(1) {
+      animation: bounceVertical 5s infinite;
+    }
+
+    .moving-text:nth-child(2) {
+      animation: bounceVertical 5s infinite;
+      animation-delay: 1s;
+    }
+
+  </style>
+  <article class="fullheight" style="height: 568px;">
+    <div class="hgroup">
+      <p class="moving-text" style="font-weight: bold; color: #F0FFFF; font-size: 28px;">{{ welcomeMessageEnglish }}</p>
+      <p class="moving-text" style="font-weight: bold; color: #7DF9FF; font-size: 28px;">{{ welcomeMessageFrench }}</p>
+      <h1>Landon Hotel</h1>
+      <h2>London, Ontario</h2>
+      <p><a href="/#welcome"><img alt="down arrow" src="assets/images/arrow.png"></a></p>
+    </div>
+  </article>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+  <div class="scrollmagic-pin-spacer"
+       style="display: block; top: auto; left: auto; bottom: auto; right: auto; position: relative; margin: 0 auto auto; box-sizing: content-box; width: 100%; min-height: 44px; height: auto; padding-top: 0; padding-bottom: 0;">
+    <nav id="nav" style="position: relative; top: 0; left: 0; bottom: auto; right: auto; width: 100%;">
+      <div class="navbar">
+        <div class="brand"><a href="/#welcome">Landon <span>Hotel</span></a></div>
+      </div><!-- navbar -->
+    </nav>
+  </div>
+  <style>
+    .banner {
+      background-color: #2C3E50;
+      color: #ECF0F1;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin: 20px 0;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .banner:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .banner h2 {
+      color: #E74C3C;
+      border-bottom: none;
+      margin-bottom: 15px;
+      animation: pulse 1.5s infinite;
+    }
+
+    .banner p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .banner a {
+      color: #3498DB;
+      text-decoration: none;
+      border-bottom: 1px dotted #3498DB;
+      transition: border-bottom 0.3s, color 0.3s;
+    }
+
+    .banner a:hover {
+      border-bottom: 1px solid #3498DB;
+      color: #ECF0F1;
+    }
+
+    .banner .date {
+      color: #F39C12;
+    }
+
+    .banner .times {
+      color: #2ECC71;
+    }
+
+    .banner .presenter {
+      color: #9B59B6;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+
+  <div class="banner">
+    <h2>AI in the Digital Workplace</h2>
+    <p class="date"><strong>Join us on May 1, 2023, for an online, live presentation at the Landon Hotel. The
+      presentation times for "AI in the Digital Workplace" are as follows:</strong></p>
+    <p class="times"><strong>{{ convertedTimes }}</strong></p>
+    <p class="presenter"><strong>Presented by <a href="https://www.linkedin.com/in/">Bradley Bouley</a></strong></p>
+  </div>
+
+</header>
+<main id="wrapper">
+  <div class="scene" id="welcome">
+    <article class="content">
+
+
+      <div class="row">
+        <div class="" col-12>
+          <div class="gallery">
+            <img alt="Intro Gallery Room Sample Pictures" src="assets/images/intro_room.jpg">
+            <img alt="Intro Gallery Pool Sample Pictures" src="assets/images/intro_pool.jpg">
+            <img alt="Intro Gallery Dining Sample Pictures" src="assets/images/intro_dining.jpg">
+            <img alt="Intro Gallery Attractions Sample Pictures" src="assets/images/intro_attractions.jpg">
+            <img alt="Intro Gallery Dining Sample Pictures" class="hidesm" src="assets/images/intro_wedding.jpg">
+          </div>
+          <h1>Book a Room</h1>
+          <form (ngSubmit)="onSubmit(roomsearch)" [formGroup]="roomsearch"
+                class="form-horizontal">
+
+            <div class="form-group">
+              <label class="col-4" for="checkin">Check-In:</label>
+              <div class="col-12">
+                <input class="form-control" formControlName="checkin" id="checkin" type="date">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-4" for="checkout">Check-Out:</label>
+              <div class="col-12">
+                <input class="form-control" formControlName="checkout" id="checkout" type="date">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-offset-2 col-12">
+                <button class="btn btn-primary btn-lg" type="submit"> Submit</button>
+              </div>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+
+      <h1>Available Rooms</h1>
+
+      <div *ngIf="rooms" class="row">
+        <div class="col-12">
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+              <tr *ngFor="let room of rooms">
+                <td>
+                  <img alt="Intro Gallery Room Sample Pictures" src="assets/images/intro_room.jpg">
+                </td>
+                <td>
+                  <p><strong>Room #: {{ room.roomNumber }}</strong></p>
+                  <p><strong>USD: ${{ room.price }}</strong></p>
+                  <p><strong>CAD: C${{ room.priceCAD }}</strong></p>
+                  <p><strong>EUR: €{{ room.priceEUR }}</strong></p>
+
+
+                </td>
+                <td>
+                  <button (click)="reserveRoom(room.id)" class="btn btn-primary" type="submit">Reserve</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div><!-- welcome -->
+  <div class="scene" id="hotelinfo">
+    <article class="heading">
+      <h1>Essential Info</h1>
+    </article>
+    <article id="usefulinfo">
+      <section id="arrivalinfo">
+        <h2>Arrival Information</h2>
+        <ul>
+          <li><strong>Check-in:</strong> 3:00 PM</li>
+          <li><strong>Check-out:</strong> 11:00 AM</li>
+          <li><strong>Parking:</strong> Self-parking in the underground garage is CA$15 per day and valet-parking is
+            CA$50
+            per day.
+          </li>
+          <li><strong>Airport Shuttle:</strong> Our complimentary airport shuttles leave every hour on the hour, and
+            make trips to London International Airport. Shuttles to Toronto Pearson are available twice a day for CA$50.
+          </li>
+          <li><strong>Trains:</strong> The nearest train station is at London Station, which is a major interchange for
+            Via Rail trains running from Toronto west to Sarnia and Windsor.
+          </li>
+          <li><strong>Pet Policy:</strong> Pets of all sizes and types are allowed in designated pet rooms, and the
+            specified common areas. Service animals are allowed everywhere.
+          </li>
+        </ul>
+      </section>
+      <section class="checklist" id="services">
+        <h2>Services and Amenities</h2>
+        <p>Our services and amenities are designed to make your travel easy, your stay comfortable, and your experience
+          one-of-a-kind.</p>
+        <ul>
+          <li>Indoor pool</li>
+          <li>24-hour fitness center</li>
+          <li>Massage therapy</li>
+          <li>Full service spa</li>
+          <li>In-room jacuzzi tubs</li>
+          <li>Rooftop café &amp; smoothie bar</li>
+          <li>Coffee bar &amp; pastry shop</li>
+          <li>Traditional continental breakfast</li>
+          <li>24-hour concierge service</li>
+          <li>Business center</li>
+          <li>Complimentary wireless service</li>
+          <li>Laundry &amp; dry cleaning service</li>
+          <li>Daily paper</li>
+          <li>Certified "green" hotel</li>
+          <li>Pet-friendly rooms &amp; common areas</li>
+        </ul>
+      </section>
+      <section class="checklist" id="accessibility">
+        <h2>Accessibility</h2>
+        <p>We're committed to maintaining the same quality of service for every individual. We offer the following
+          facilities for those with special needs:</p>
+        <ul>
+          <li>Grab bars on tub walls</li>
+          <li>Shower chairs</li>
+          <li>Hand held shower sprayers</li>
+          <li>Higher toilets &amp; toilet modifiers</li>
+          <li>Lower sink faucet handles</li>
+          <li>Wheelchair clearance under sinks &amp; vanity</li>
+          <li>Lower racks in closet</li>
+          <li>TDD machines</li>
+          <li>Telephone light signalers &amp; smoke alarms</li>
+          <li>Telephone amplification handsets</li>
+          <li>Closed captioned television converters</li>
+          <li>Vibrating alarm clocks</li>
+          <li>Telephones with volume control</li>
+        </ul>
+      </section>
+    </article>
+    <article id="greenprogram">
+      <h2>Landon Green Program</h2>
+      <p><strong>The Landon Hotel - London</strong> was recently renovated, and we considered the impact on the earth
+        the entire way. From green building materials, to solar power, to energy-friendly lighting and appliances
+        throughout the hotel - we’re saving energy in every socket, outlet, and switch. We’ve also initiated a recycling
+        and composting program that reduces the load to local landfills, while providing valuable raw material for use
+        in new products, or in the case of compost, for use in local gardens and landscapes.</p>
+    </article>
+  </div><!-- hotelinfo -->
+
+  <div class="scene" id="dining">
+    <article id="areadining">
+      <h1>Dining in the Area</h1>
+      <p>London, Ontario is a foodie’s paradise, and the Landon Hotel is in the center of it all. With options for
+        traditional English, Italian, Indian, American, Chinese, and French cuisines, all within two blocks of the
+        hotel, and a variety of tasty culinary delights from many other countries, within a half-mile radius, the only
+        trouble you’ll have is choosing! </p>
+    </article>
+    <article id="inhotel">
+      <section id="rooftopcafe">
+        <h2>Rooftop Café</h2>
+        <img alt="Dining" src="assets/images/dining_rooftop.jpg">
+        <p>Landon Rooftop Café is the destination for five star dining. Our master chefs are trained to meet special
+          dietary needs, and we offer a range of vegetarian/vegan, kosher, gluten, and dairy free selections to
+          accommodate our guests. Whether you’re in the mood for our award winning roast beef, fresh select salads,
+          appetizing lunch entrees, or delectable desserts, we have you covered.</p>
+      </section>
+
+      <section id="smoothiebar">
+        <h2>Smoothie Bar</h2>
+        <img alt="Dining" src="assets/images/dining_smoothiebar.jpg">
+        <p>The Rooftop Smoothie Bar gives you panoramic views of the city, where you can have one of our specialty
+          smoothies while you wait for your table. Our top mixologists are constantly bringing new and unique offerings
+          to our smoothie menu. We have a wide range of locally grown, fresh fruit and vegetable choices to make you
+          custom blended drinks. We also have seasonal selections that you won’t find anywhere else.</p>
+      </section>
+
+      <section id="coffeebar">
+        <h2>Breakfast &amp; Coffee Bar</h2>
+        <img alt="Dining" src="assets/images/dining_lattes.jpg">
+        <p>Our traditional breakfast and coffee bar, located adjacent to our lounge, are the perfect way to start your
+          morning. We offer a wide selection of seasonal fresh fruit, a variety of cereals, croissants, crusty sourdough
+          bread, cook-to-order eggs and omelettes, fresh juice, coffee, and teas. Breakfast is served from 7:00 am to
+          10:00 am daily. Our coffee bar is open until 6:30 pm daily.</p>
+      </section>
+    </article><!-- inhotel -->
+    <article id="roomservice">
+      <h1>Room Service</h1>
+      <p>If you’d rather stay in your room and enjoy a quiet evening in, or a relaxing breakfast in bed, room service
+        options are available for all of our dining choices.</p>
+    </article>
+  </div><!-- dining -->
+
+</main>
+<footer class="scene">
+  <article class="content">
+    <div id="socialmedia">
+      <ul class="group">
+        <li><a href="https://twitter.com/"><img alt="icon for twitter" class="icon"
+                                                src="assets/images/twitter.png"></a></li>
+        <li><a href="http://www.facebook.com/"><img alt="icon for facebook" class="icon"
+                                                    src="assets/images/facebook.png"></a></li>
+        <li><a href="http://www.youtube.com/"><img alt="icon for youtube" class="icon" src="assets/images/youtube.png"></a>
+        </li>
+      </ul>
+    </div>
+  </article>
+</footer>
+<script src="src/app/images/script.js"></script>
